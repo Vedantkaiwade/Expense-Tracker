@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <string>
 using namespace std;
 
@@ -8,17 +9,18 @@ class Expense{
         double amount;
     public:
         Expense(string cat, double amt) : category(cat), amount(amt) {}
-        void display() {
+        void display() const {
             cout << "Category: " << category << ", Amount: $" << amount << endl;
         }
 };
 
 int main() {
-    Expense food("Food", 50.75);
-    Expense transport("Transport", 20.00);
-    Expense entertainment("Entertainment", 100.00);
-    food.display();
-    transport.display();
-    entertainment.display();
+    vector<Expense> expenses;
+    expenses.push_back(Expense("Food", 150.75));
+    expenses.push_back(Expense("Transport", 50.00));
+    expenses.push_back(Expense("Entertainment", 200.00));
+    for (const Expense& e : expenses) {
+        e.display();
+    }
     return 0;
 }
