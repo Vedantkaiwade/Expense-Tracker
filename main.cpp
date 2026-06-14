@@ -15,12 +15,25 @@ class Expense{
 };
 
 int main() {
+    string category;
+    double amount;
+    int n;
+    
+    cout<<"Enter number of expenses : "<<endl;
+    cin >> n;
+    cin.ignore(); // Ignore the newline character left by cin
     vector<Expense> expenses;
-    expenses.push_back(Expense("Food", 150.75));
-    expenses.push_back(Expense("Transport", 50.00));
-    expenses.push_back(Expense("Entertainment", 200.00));
-    for (const Expense& e : expenses) {
-        e.display();
+    for(int i=1; i<=n; i++){
+    cout<<"\nExpense "<<i<<endl;
+    cout<<"Category : "<<endl;
+    getline(cin,category);
+    cout<<"Enter amount : "<<endl;
+    cin >> amount;
+    cin.ignore(); // Ignore the newline character left by cin
+    expenses.push_back(Expense(category,amount));
+    }
+    for(const Expense& expense : expenses){
+        expense.display();
     }
     return 0;
 }
