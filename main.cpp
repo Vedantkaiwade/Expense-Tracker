@@ -13,27 +13,55 @@ class Expense{
             cout << "Category: " << category << ", Amount: $" << amount << endl;
         }
 };
+void addExpense(vector<Expense>& expenses){
+        string category;
+        double amount;
+        cout<<"Category : ";
+        getline(cin,category);
+        cout<<"Enter amount : ";
+        cin >> amount;
+        cin.ignore(); // Ignore the newline character left by cin
+        expenses.push_back(Expense(category,amount));
+    }
+     void viewExpenses(const vector<Expense>& expenses){
+        if(expenses.empty()){
+            cout<<"No expenses recorded."<<endl;
+            return;
+        }
+        else{
+            cout<<"Expenses recorded : "<<endl;
+
+        for(const Expense& expense : expenses){
+            expense.display();
+         }
+        }
+    }
 
 int main() {
-    string category;
-    double amount;
-    int n;
-    
-    cout<<"Enter number of expenses : "<<endl;
-    cin >> n;
-    cin.ignore(); // Ignore the newline character left by cin
     vector<Expense> expenses;
-    for(int i=1; i<=n; i++){
-    cout<<"\nExpense "<<i<<endl;
-    cout<<"Category : "<<endl;
-    getline(cin,category);
-    cout<<"Enter amount : "<<endl;
-    cin >> amount;
-    cin.ignore(); // Ignore the newline character left by cin
-    expenses.push_back(Expense(category,amount));
-    }
-    for(const Expense& expense : expenses){
-        expense.display();
+   while(true){
+        cout << "\n===== Expense Tracker =====\n";
+        cout << "1. Add Expense\n";
+        cout << "2. View Expenses\n";
+        cout << "3. Exit\n";
+        int choice;
+        cout<<"Enter your choice : ";
+        cin>>choice;
+        cin.ignore(); // Ignore the newline character left by cin
+
+        switch(choice){
+            case 1:
+                addExpense(expenses);
+                break;
+            case 2:
+                viewExpenses(expenses);
+                break;
+            case 3:
+                return 0;
+                break;
+            default:
+                cout<<"Invalid choice"<<endl;
+        }
     }
     return 0;
 }
